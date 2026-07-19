@@ -10,8 +10,22 @@ export let lenis: Lenis | null = null;
 
 const NAV_LINKS = [
   { href: "#about", label: "ABOUT" },
-  { href: "#work", label: "WORK" },
+  { href: "#work", label: "WORKS" },
 ];
+
+const lerpColor = (
+  from: [number, number, number],
+  to: [number, number, number],
+  t: number,
+) => {
+  const r = Math.round(from[0] + (to[0] - from[0]) * t);
+  const g = Math.round(from[1] + (to[1] - from[1]) * t);
+  const b = Math.round(from[2] + (to[2] - from[2]) * t);
+  return `rgb(${r}, ${g}, ${b})`;
+};
+
+const BLACK: [number, number, number] = [0, 0, 0];
+const WHITE: [number, number, number] = [255, 255, 255];
 
 const Navbar = () => {
   const navRef = useRef<HTMLElement>(null);
@@ -34,6 +48,21 @@ const Navbar = () => {
     }
     const rafId = requestAnimationFrame(raf);
 
+    const handleLenisScroll = ({ scroll }: { scroll: number }) => {
+      const nav = navRef.current;
+      if (!nav) return;
+
+      const start = window.innerHeight * 0.6;
+      const end = window.innerHeight * 1.0;
+      const progress = Math.min(
+        1,
+        Math.max(0, (scroll - start) / (end - start)),
+      );
+
+      nav.style.color = lerpColor(BLACK, WHITE, progress);
+    };
+    lenis.on("scroll", handleLenisScroll);
+
     const links = navRef.current?.querySelectorAll("a[data-href]") ?? [];
     const handleClick = (e: Event) => {
       if (window.innerWidth <= 1024) return;
@@ -53,6 +82,7 @@ const Navbar = () => {
       cancelAnimationFrame(rafId);
       links.forEach((el) => el.removeEventListener("click", handleClick));
       window.removeEventListener("resize", handleResize);
+      lenis?.off("scroll", handleLenisScroll);
       lenis?.destroy();
       lenis = null;
     };
@@ -62,7 +92,8 @@ const Navbar = () => {
     <>
       <nav
         ref={navRef}
-        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 md:px-12"
+        className="fixed top-6 left-0 right-0 z-50 flex items-center justify-between container"
+        style={{ color: "black" }}
       >
         <Link
           href="/#"
@@ -82,10 +113,14 @@ const Navbar = () => {
           ))}
 
           <li>
-              <a className="rounded-xl bg-[#FF6A00] text-sm text-white px-4 py-2.5 font-medium" href='#contact' data-href='#contact'>
-                Contact
-              </a>
-            </li>
+            <a
+              className="rounded-full bg-[#FF6A00] text-sm text-white px-5 py-3 font-medium"
+              href="#contact"
+              data-href="#contact"
+            >
+              Contact
+            </a>
+          </li>
         </ul>
       </nav>
     </>

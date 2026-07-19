@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { inter, bauhaus, cocogoose, moderniz, stretchPro } from "@/lib/font";
+
 import Navbar from "@/modules/layout/navbar";
 import "./globals.css";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Man Arafat | Software Developer",
@@ -20,8 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
-
+    <html
+      lang="en"
+      className={`${inter.variable} ${bauhaus.variable} ${cocogoose.variable} ${moderniz.variable} ${stretchPro.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col">
         <Navbar />
         {children}
