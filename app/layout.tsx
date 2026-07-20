@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { inter, bauhaus, cocogoose, moderniz, stretchPro } from "@/lib/font";
 
-import Navbar from "@/modules/layout/navbar";
+import { Navbar } from "@/modules/layout/header";
 import "./globals.css";
 
 export const metadata: Metadata = {

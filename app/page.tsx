@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <div className="relative">
       <HeroSection />
-      <div className="relative z-10">
-        <div className="h-screen" aria-hidden />
+      <div className="relative z-10 h-screen" aria-hidden />
+      <div className="relative z-10 bg-black">
         <About />
         <Experience />
         <Skills />

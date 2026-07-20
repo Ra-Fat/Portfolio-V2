@@ -1,6 +1,7 @@
 import React from "react";
 import { IconType } from "react-icons";
 import { FaFacebook, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
+import { HeroMarquee } from "@/components/atoms/hero-marquee";
 
 import Squares from "@/components/canvas/squres";
 
@@ -31,8 +32,8 @@ export const socialLinks: SocialLink[] = [
 
 export const HeroSection = () => {
   return (
-    <div className="fixed inset-0 h-screen container flex items-center justify-center overflow-hidden z-0">
-      <div className="relative z-10 flex flex-col items-center text-center">
+    <div className="fixed inset-0 h-screen w-full flex items-center justify-center overflow-hidden z-0">
+      <div className="relative container z-10 flex flex-col items-center text-center">
         <h1
           style={{ fontSize: "clamp(52px, 12vw, 96px)" }}
           className="font-moderniz uppercase leading-[0.9] tracking-tight"
@@ -47,25 +48,13 @@ export const HeroSection = () => {
             FAT
           </span>
         </h1>
+        <p
+          className="mt-8 font-sans text-lg text-black"
+        >
+          Software Engineer & Full-Stack Developer
+        </p>
       </div>
-      <div>
-        <div className="flex flex-col gap-5 absolute bottom-10 left-0">
-          {socialLinks.map((s) => {
-            const Icon = s.icon;
-            return (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.label}
-              >
-                <Icon className="w-8 h-8" />
-              </a>
-            );
-          })}
-        </div>
-      </div>
+      <HeroMarquee />
     </div>
   );
 };
