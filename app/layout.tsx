@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { inter, bauhaus, cocogoose, moderniz, stretchPro } from "@/lib/font";
+import SmoothScrollProvider from "@/components/canvas/smooth-scroll";
 
 import { Navbar } from "@/modules/layout/header";
 import "./globals.css";
@@ -21,8 +22,10 @@ export default function RootLayout({
       className={`${inter.variable} ${bauhaus.variable} ${cocogoose.variable} ${moderniz.variable} ${stretchPro.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar />
-        {children}
+        <SmoothScrollProvider>
+          <Navbar />
+          {children}
+        </SmoothScrollProvider>
       </body>
     </html>
   );

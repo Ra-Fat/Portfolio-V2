@@ -52,10 +52,11 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
+  --card: #161616;
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
@@ -170,4 +171,8 @@
   @variant xl {
     max-width: 1250px;
   }
+}
+
+html {
+  scroll-behavior: smooth;
 }

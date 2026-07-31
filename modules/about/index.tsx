@@ -2,22 +2,10 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { SectionTitle } from "@/components/atoms/section-title";
-import { Overview } from "@/components/molecules/about/overview";
+import { Card } from "@/components/ui/card";
+import { Overview } from "@/components/molecules/overview";
 
-const Card = ({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-  variants?: any;
-}) => (
-  <div
-    className={`bg-[#111111] border border-white/[0.07] rounded-2xl overflow-hidden ${className}`}
-  >
-    {children}
-  </div>
-);
+
 
 export const About = () => {
   return (
@@ -28,8 +16,7 @@ export const About = () => {
 
           <div className="w-full mt-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-              {/* Row 1 - 3 columns */}
-              <Card className="flex flex-col h-80">
+              <Card className="flex flex-col h-80 text-white">
                 <Overview />
               </Card>
 
