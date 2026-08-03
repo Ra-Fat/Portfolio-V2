@@ -7,8 +7,8 @@ export const Overview = () => {
         </div>
 
         <div>
-          <h3 className=" font-bold text-xl leading-tight">
-            ARafat
+          <h3 className=" font-bold text-lg leading-tight uppercase">
+            ARafat Man
           </h3>
           <p className=" text-sm leading-snug mt-1">
             Software Engineer &amp; Full-Stack Developer

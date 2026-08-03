@@ -9,7 +9,7 @@ export default function Home() {
     <div className="relative">
       <HeroSection />
       <div className="relative z-10 h-screen" aria-hidden />
-      <div className="relative z-10 bg-black">
+      <div className="relative z-10 bg-black ">
         <About />
         <Experience />
         <Skills />
