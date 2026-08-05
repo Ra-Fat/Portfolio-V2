@@ -1,37 +1,37 @@
-import Image from 'next/image';
-import React from 'react';
+import React from "react";
 
 type Props = {
   scrollProgress: number;
   vertical?: boolean;
+  points?: number[];
 };
 
-export const ProgressBar = ({ scrollProgress, vertical = true }: Props) => (
+export const ProgressBar = ({
+  scrollProgress,
+  vertical = true,
+  points = [],
+}: Props) => (
   <div
     className={`
-      ${vertical
-        ? 'relative w-0.5 h-full'
-        : 'absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-0.5'
+      ${
+        vertical
+          ? "relative w-1 h-full"
+          : "absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-1.5"
       }
-      bg-white/8
+      bg-white/10
     `}
   >
     <div
       className="absolute top-0 left-0 w-full bg-white/40"
       style={{ height: `${scrollProgress}%` }}
     />
-    <div
-      className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
-      style={{ top: `${scrollProgress}%` }}
-    >
-      <div className="w-8 h-8 rounded-full ring-1 ring-white/20 overflow-hidden">
-        <Image
-          src=''
-          alt="Progress"
-          fill
-          className="w-full h-full object-cover"
-        />
-      </div>
-    </div>
+
+    {points.map((point, i) => (
+      <div
+        key={i}
+        className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-4 h-4 rounded-full bg-white/70"
+        style={{ top: `${point}%` }}
+      />
+    ))}
   </div>
 );
