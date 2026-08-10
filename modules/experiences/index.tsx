@@ -1,4 +1,5 @@
 'use client'
+
 import { SectionTitle } from "@/components/atoms/section-title";
 import { DesktopTimeline } from "@/components/templates/desktop-timeline";
 import { useEffect, useState, useRef } from "react";
@@ -77,6 +78,7 @@ export const Experience = () => {
     <div className="w-full py-15 ">
       <div className="flex flex-col container text-white">
         <SectionTitle title="Experience" subtitle="Volunteer" />
+        <div className="mt-5"></div>
         <MobileTimeline
           experiences={ExperienceData}
           scrollProgress={scrollProgress}

@@ -21,7 +21,7 @@ export const About = () => {
         <div className="flex flex-col w-full text-white">
           <SectionTitle title="About" subtitle="Profile" />
 
-          <div className="w-full mt-4">
+          <div className="w-full mt-5">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 ">
               <Card className="flex flex-col h-75 text-white">
                 <Overview />
