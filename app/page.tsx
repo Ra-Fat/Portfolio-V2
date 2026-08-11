@@ -7,16 +7,16 @@ import { Project } from "@/modules/project";
 
 export default function Home() {
   return (
-    <div className="relative">
+    <div>
       <HeroSection />
       <div className="relative z-10 h-screen" aria-hidden />
-      <div className="relative z-10 bg-black ">
+      <section className="relative z-10 flex bg-foreground flex-col gap-12 py-25">
         <About />
         <Experience />
         <Project />
         <Skills />
         <Contact />
-      </div>
+      </section>
     </div>
   );
 }

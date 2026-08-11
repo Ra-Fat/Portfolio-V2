@@ -1,27 +1,24 @@
-export const Overview = () => {
-  return (
-    <section className="w-full h-full rounded-2xl text-white">
-      <div className="flex items-center gap-4">
-        <div className="w-16 h-16 rounded-full border-2 border-white flex items-center justify-center shrink-0">
-          <span className=" font-bold text-lg">RF</span>
-        </div>
+import { OverviewData } from "@/data/interface";
 
-        <div>
-          <h3 className=" font-bold text-lg leading-tight uppercase">
-            ARafat Man
+interface OverviewProps {
+  data: OverviewData;
+}
+
+export const Overview = ({ data }: OverviewProps) => {
+  return (
+    <section>
+      <div className="flex items-center gap-4">
+        <div className="w-16 h-16 rounded-full border-2 flex items-center justify-center shrink-0">
+          <span className="font-bold text-lg">{data.initials}</span>
+        </div>
+        <div className="flex flex-col gap-1">
+          <h3 className="font-bold text-lg leading-tight uppercase">
+            {data.name}
           </h3>
-          <p className=" text-sm leading-snug mt-1">
-            Software Engineer &amp; Full-Stack Developer
-          </p>
+          <p className="text-sm leading-snug">{data.role}</p>
         </div>
       </div>
-
-      <p className="text-base leading-relaxed mt-6">
-        I'm a Software Engineer with a passion for building beautiful,
-        functional mobile and web applications. I specialize in Flutter
-        development and full-stack solutions, combining technical expertise
-        with creative problem-solving.
-      </p>
+      <p className="text-base leading-relaxed mt-6">{data.description}</p>
     </section>
   );
 };

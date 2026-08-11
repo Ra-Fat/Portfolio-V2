@@ -21,9 +21,9 @@ export const Feature = () => {
   const project = feature_item[current];
 
   return (
-    <section className="flex flex-col gap-3 text-white h-full">
+    <section>
       <div className="flex items-center justify-between">
-        <h3 className=" font-bold text-md leading-tight uppercase">Features</h3>
+        <h3 className="font-bold text-md leading-tight uppercase">Features</h3>
         <div className="flex gap-1.5">
           {feature_item.map((_, i) => (
             <button
@@ -37,7 +37,7 @@ export const Feature = () => {
         </div>
       </div>
 
-      <div className="h-50 w-full relative overflow-hidden  rounded-xl bg-red-400 mt-3">
+      <div className="h-50 w-full relative overflow-hidden  rounded-xl mt-4">
         <Image
           key={project.id}
           src={project.src}

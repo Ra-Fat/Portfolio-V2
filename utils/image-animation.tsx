@@ -61,7 +61,7 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
                 : "z-20 translate-x-20 scale-90 rotate-6 opacity-60"
             }`}
           >
-            <div className="h-45 w-30 overflow-hidden md:h-50 md:w-40 xl:w-45 xl:h-60">
+            <div className="h-50 w-35 overflow-hidden md:h-55 md:w-45 xl:w-50 xl:h-65">
               <Image
                 src={image.img}
                 alt={`Carousel image ${index + 1}`}
