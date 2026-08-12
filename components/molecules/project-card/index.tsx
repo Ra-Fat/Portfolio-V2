@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-// import { CircularHoverBadge } from "./CircularHoverBadge";
 import { CircularHoverBadge } from "@/components/atoms/circular-hover";
 
 type Props = {
@@ -76,7 +75,9 @@ export const ProjectCard = ({ project, index }: Props) => {
             isEven ? "md:order-2" : "md:order-1 pl-4",
           )}
         >
-          <h2 className="text-xl font-bold text-white uppercase">{project.name}</h2>
+          <h2 className="text-xl font-bold text-white uppercase">
+            {project.name}
+          </h2>
           <p className="text-secondary leading-relaxed text-base">
             {project.description}
           </p>

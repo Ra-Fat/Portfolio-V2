@@ -14,7 +14,7 @@ const overview = [
 
 export const HeroMarquee = () => {
   return (
-    <div className="absolute bottom-0 bg-black left-0 w-full overflow-hidden pointer-events-none">
+    <div className="absolute bottom-0   left-0 w-full overflow-hidden pointer-events-none">
       <div className="w-full bg-primary">
         <Marquee direction="left" speed={50} gradient={false} autoFill>
           {overview.map((item, i) => (

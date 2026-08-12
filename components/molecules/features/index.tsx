@@ -1,12 +1,8 @@
 "use client";
+
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
-const feature_item = [
-  { id: 1, src: "/features/aspire-certificate.png", tag: "certificate" },
-  { id: 2, src: "/features/komplex-certificate.jpg", tag: "certificate" },
-  { id: 3, src: "/features/teaching-certificate.jpg", tag: "certificate" },
-];
+import { feature_item } from "@/data";
 
 export const Feature = () => {
   const [current, setCurrent] = useState(0);
@@ -21,7 +17,7 @@ export const Feature = () => {
   const project = feature_item[current];
 
   return (
-    <section>
+    <section className="flex flex-col">
       <div className="flex items-center justify-between">
         <h3 className="font-bold text-md leading-tight uppercase">Features</h3>
         <div className="flex gap-1.5">
@@ -30,14 +26,14 @@ export const Feature = () => {
               key={i}
               onClick={() => setCurrent(i)}
               className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === current ? "bg-white w-4" : "bg-white/20 w-1.5"
+                i === current ? "w-4 bg-background" : "bg-background/20 w-1.5"
               }`}
             />
           ))}
         </div>
       </div>
 
-      <div className="h-50 w-full relative overflow-hidden  rounded-xl mt-4">
+      <div className="h-60 w-full relative overflow-hidden rounded-xl mt-4">
         <Image
           key={project.id}
           src={project.src}
@@ -49,7 +45,7 @@ export const Feature = () => {
         <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent pointer-events-none z-10" />
         <div className="absolute bottom-3 left-3 right-3 flex items-end justify-end pointer-events-none z-20">
           <span className="text-[10px] tracking-wider text-muted border border-white/10 rounded-md px-2 py-0.5">
-            {project.tag}
+            certificate
           </span>
         </div>
       </div>

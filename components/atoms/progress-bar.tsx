@@ -1,13 +1,10 @@
-import React from "react";
 
 type Props = {
-  scrollProgress: number;
   vertical?: boolean;
   points?: number[];
 };
 
 export const ProgressBar = ({
-  scrollProgress,
   vertical = true,
   points = [],
 }: Props) => (
@@ -23,7 +20,6 @@ export const ProgressBar = ({
   >
     <div
       className="absolute top-0 left-0 w-full bg-white/40"
-      style={{ height: `${scrollProgress}%` }}
     />
 
     {points.map((point, i) => (
