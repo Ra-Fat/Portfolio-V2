@@ -1,5 +1,5 @@
 import { HeroMarquee } from "@/components/atoms/hero-marquee";
-import { HeroWireframeDecor } from "@/components/atoms/hero-frame";
+import { HeroWireframeDecor } from "@/components/canvas/hero-frame";
 
 export const HeroSection = () => {
   return (

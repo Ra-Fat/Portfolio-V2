@@ -10,7 +10,7 @@ import { ExperienceData } from "@/data";
 export const Experience = () => {
 
   return (
-    <div className="w-full py-15 ">
+    <div className="w-full py-15 select-none">
       <div className="flex flex-col container">
         <SectionTitle title="Experience" subtitle="Volunteer" />
         <div className="mt-4"></div>

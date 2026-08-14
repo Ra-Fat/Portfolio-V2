@@ -1,22 +1,14 @@
-'use client'
+"use client";
 
 import { useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
+import { NavbarLinks } from "@/config";
+import { useNavColors } from "@/utils/use-nav-color";
 
 export interface NavbarLink {
   id: string;
   label: string;
-  icon: string;
 }
-
-export const NavbarLinks: NavbarLink[] = [
-  { id: "home", label: "Home", icon: "Home" },
-  { id: "about", label: "About", icon: "User" },
-  { id: "skills", label: "Skills", icon: "Code" },
-  { id: "experiences", label: "Experiences", icon: "Briefcase" },
-  { id: "projects", label: "Projects", icon: "FolderKanban" },
-  { id: "contact", label: "Contact", icon: "Mail" },
-];
 
 interface MobileNavProps {
   menuOpen: boolean;
@@ -31,23 +23,24 @@ export const MobileNav = ({
   active,
   handleLinkClick,
 }: MobileNavProps) => {
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { isDark, style } = useNavColors(containerRef, "dark-section");
 
   // close when clicking outside
-  //   useEffect(() => {
-  //     const handleClickOutside = (e) => {
-  //       if (
-  //         menuOpen &&
-  //         containerRef.current &&
-  //         !containerRef.current.contains(e.target as Node)
-  //       ) {
-  //         setMenuOpen(false);
-  //       }
-  //     };
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        menuOpen &&
+        containerRef.current &&
+        !containerRef.current.contains(e.target as Node)
+      ) {
+        setMenuOpen(false);
+      }
+    };
 
-  //     document.addEventListener("mousedown", handleClickOutside);
-  //     return () => document.removeEventListener("mousedown", handleClickOutside);
-  //   }, [menuOpen]);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [menuOpen, setMenuOpen]);
 
   const handleClick = (id: string) => {
     handleLinkClick(id);
@@ -57,22 +50,32 @@ export const MobileNav = ({
   return (
     <div
       ref={containerRef}
-      className="sm:hidden flex flex-col items-center w-full"
+      className="fixed top-4 left-0 right-0 z-50 sm:hidden flex flex-col items-center w-full px-4"
     >
       {/* Top bar */}
       <div
         onClick={() => setMenuOpen((prev) => !prev)}
-        className="flex items-center justify-between rounded-full
-                   bg-black/40 px-5 py-2 border border-white/20
-                   backdrop-blur-md cursor-pointer select-none"
+        className="flex items-center justify-between py-4 rounded-full
+                   backdrop-blur-md w-full cursor-pointer select-none
+                   transition-colors duration-300"
+        style={style}
       >
-        <h2>Jack</h2>
+        <h2
+          className={`font-bold px-5 text-lg uppercase transition-colors duration-300 ${
+            isDark ? "text-white" : "text-black"
+          }`}
+        >
+          ARAFAT
+        </h2>
         <button
           onClick={(e) => {
             e.stopPropagation();
             setMenuOpen((prev) => !prev);
           }}
-          className="p-2 text-white cursor-pointer"
+          className={`px-5 cursor-pointer transition-colors duration-300 ${
+            isDark ? "text-white" : "text-black"
+          }`}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
         >
           {menuOpen ? <X /> : <Menu />}
         </button>
@@ -80,26 +83,36 @@ export const MobileNav = ({
 
       {/* Dropdown */}
       <div
-        className={`mt-3 w-full rounded-2xl bg-black/40 border border-white/20 backdrop-blur-md
-                   overflow-hidden transition-all duration-300 ease-in-out
-                   ${menuOpen ? "max-h-96 opacity-100 px-2 py-2" : "max-h-0 opacity-0 px-2 py-0"}`}
+        className={`mt-3 w-full grid transition-[grid-template-rows] duration-300 ease-in-out
+             ${menuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
       >
-        <ul className="flex flex-col p-2 gap-2">
-          {NavbarLinks.map(({ id, label }) => (
-            <li
-              key={id}
-              onClick={() => handleClick(id)}
-              className={`flex items-center gap-3 px-4 py-2.5 rounded-xl cursor-pointer transition
-                    ${
-                      active === id
-                        ? "bg-[#212121] text-white"
-                        : "text-gray-400 hover:bg-[#212121] hover:text-white"
-                    }`}
-            >
-              {label}
-            </li>
-          ))}
-        </ul>
+        <div
+          className="overflow-hidden rounded-2xl backdrop-blur-md"
+          style={{
+            backgroundColor: style.backgroundColor,
+          }}
+        >
+          <ul className="flex flex-col p-2 gap-2 m-2">
+            {NavbarLinks.map(({ id, label }) => (
+              <li
+                key={id}
+                onClick={() => handleClick(id)}
+                className={`flex items-center gap-3 px-4 py-2.5 rounded-xl cursor-pointer transition-colors duration-300
+            ${
+              active === id
+                ? isDark
+                  ? "bg-white text-black font-semibold"
+                  : "bg-black text-white font-semibold"
+                : isDark
+                  ? "text-white/70 hover:text-white"
+                  : "text-black/60 hover:text-black"
+            }`}
+              >
+                {label}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

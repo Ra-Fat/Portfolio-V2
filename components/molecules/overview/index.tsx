@@ -1,10 +1,4 @@
-import { OverviewData } from "@/data/interface";
-
-interface OverviewProps {
-  data: OverviewData;
-}
-
-export const Overview = ({ data }: OverviewProps) => {
+export const Overview = ({ data }: any) => {
   return (
     <section>
       <div className="flex items-center gap-4">

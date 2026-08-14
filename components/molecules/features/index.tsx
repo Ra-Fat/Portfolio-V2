@@ -2,26 +2,34 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { feature_item } from "@/data";
 
-export const Feature = () => {
+interface CarouselImage {
+  id: string | number;
+  src: string;
+}
+
+interface ImageCarouselProps {
+  images: CarouselImage[];
+}
+
+export const Feature: React.FC<ImageCarouselProps> = ({images}) => {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % feature_item.length);
+      setCurrent((prev) => (prev + 1) % images.length);
     }, 2500);
     return () => clearInterval(timer);
   }, []);
 
-  const project = feature_item[current];
+  const project = images[current];
 
   return (
     <section className="flex flex-col">
       <div className="flex items-center justify-between">
         <h3 className="font-bold text-md leading-tight uppercase">Features</h3>
         <div className="flex gap-1.5">
-          {feature_item.map((_, i) => (
+          {images.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}
@@ -33,7 +41,7 @@ export const Feature = () => {
         </div>
       </div>
 
-      <div className="h-60 w-full relative overflow-hidden rounded-xl mt-4">
+      <div className="h-60  w-full relative overflow-hidden rounded-xl mt-4">
         <Image
           key={project.id}
           src={project.src}

@@ -70,11 +70,19 @@ function GroundGrid({ color }: { color: string }) {
 
   return (
     <>
-      <mesh ref={plane1Ref} rotation={[-Math.PI / 2, 0, 0]} position={[0, -4, 0]}>
+      <mesh
+        ref={plane1Ref}
+        rotation={[-Math.PI / 2, 0, 0]}
+        position={[0, -4, 0]}
+      >
         <planeGeometry args={[planeLength, planeLength, 40, 40]} />
         <meshBasicMaterial color={color} wireframe transparent opacity={0.08} />
       </mesh>
-      <mesh ref={plane2Ref} rotation={[-Math.PI / 2, 0, 0]} position={[0, -4, -planeLength]}>
+      <mesh
+        ref={plane2Ref}
+        rotation={[-Math.PI / 2, 0, 0]}
+        position={[0, -4, -planeLength]}
+      >
         <planeGeometry args={[planeLength, planeLength, 40, 40]} />
         <meshBasicMaterial color={color} wireframe transparent opacity={0.08} />
       </mesh>
@@ -100,6 +108,62 @@ function ScrollDolly() {
   return null;
 }
 
+type SceneProps = {
+  color: string;
+  showGround: boolean;
+  scrollZoom: boolean;
+  sideOffset: number;
+  topOffset: number;
+  size: number;
+  objectZ: number;
+};
+
+/**
+ * Lives inside <Canvas>. Uses your exact sideOffset/topOffset/size on
+ * desktop (untouched) but clamps sideOffset so it can never exceed what's
+ * actually visible in the camera's frustum at the object's z-depth. On
+ * wide screens the clamp never triggers — same as before. On narrow
+ * mobile screens, it pulls objects in just enough to stay on-screen.
+ */
+function Scene({
+  color,
+  showGround,
+  scrollZoom,
+  sideOffset,
+  topOffset,
+  size,
+  objectZ,
+}: SceneProps) {
+  const { camera, viewport } = useThree((state) => ({
+    camera: state.camera,
+    viewport: state.viewport,
+  }));
+
+  // Actual visible half-width in world units AT the object's z depth.
+  const cv = viewport.getCurrentViewport(camera, [0, 0, objectZ]);
+  const maxVisibleHalfWidth = cv.width / 2;
+
+  // Leave a little margin (90%) so objects aren't clipped right at the edge.
+  const clampedSideOffset = Math.min(sideOffset, maxVisibleHalfWidth * 0.9);
+
+  return (
+    <>
+      {scrollZoom && <ScrollDolly />}
+      <SphereInCube
+        position={[-clampedSideOffset, topOffset, objectZ]}
+        size={size}
+        color={color}
+      />
+      <SphereInCube
+        position={[clampedSideOffset, topOffset, objectZ]}
+        size={size}
+        color={color}
+      />
+      {showGround && <GroundGrid color={color} />}
+    </>
+  );
+}
+
 type Props = {
   /** Wireframe line color — dark gray/black reads best on your white hero */
   color?: string;
@@ -107,12 +171,14 @@ type Props = {
   showGround?: boolean;
   /** Slightly zoom out as the person scrolls the first ~300px */
   scrollZoom?: boolean;
-  /** How far out from center the left/right objects sit — increase to push them further to the edges */
+  /** How far out from center the left/right objects sit — auto-clamped to stay visible on narrow screens */
   sideOffset?: number;
   /** How high up the objects sit — increase to push them toward the top of the viewport */
   topOffset?: number;
   /** Size of each sphere-in-cube pair — lower this to make them smaller */
   size?: number;
+  /** z-depth the objects sit at, relative to camera */
+  objectZ?: number;
   className?: string;
 };
 
@@ -120,7 +186,9 @@ type Props = {
  * Full decorative background scene: two faint sphere-in-cube pairs
  * flanking the hero content, plus an optional infinite ground grid
  * with fog for depth. Renders behind your text — pointer-events are
- * disabled so it never blocks clicks.
+ * disabled so it never blocks clicks. Desktop layout is unchanged;
+ * sideOffset is only clamped down when the visible frustum is too
+ * narrow to fit it (i.e. mobile portrait).
  */
 export const HeroWireframeDecor = ({
   color = "#1A1A1A",
@@ -129,6 +197,7 @@ export const HeroWireframeDecor = ({
   sideOffset = 8,
   topOffset = 4.5,
   size = 3,
+  objectZ = -2,
   className,
 }: Props) => {
   return (
@@ -138,10 +207,15 @@ export const HeroWireframeDecor = ({
         gl={{ alpha: true, antialias: true }}
         dpr={[1, 1.5]}
       >
-        {scrollZoom && <ScrollDolly />}
-        <SphereInCube position={[-sideOffset, topOffset, -2]} size={size} color={color} />
-        <SphereInCube position={[sideOffset, topOffset, -2]} size={size} color={color} />
-        {showGround && <GroundGrid color={color} />}
+        <Scene
+          color={color}
+          showGround={showGround}
+          scrollZoom={scrollZoom}
+          sideOffset={sideOffset}
+          topOffset={topOffset}
+          size={size}
+          objectZ={objectZ}
+        />
       </Canvas>
     </div>
   );

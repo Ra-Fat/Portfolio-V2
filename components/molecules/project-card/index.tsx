@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { CircularHoverBadge } from "@/components/atoms/circular-hover";
+import { useLazyFollow } from "@/utils/use-scroll";
 
 type Props = {
   project: {
@@ -26,12 +27,15 @@ export const ProjectCard = ({ project, index }: Props) => {
   const isEven = index % 2 === 0;
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
-  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [rawPos, setRawPos] = useState({ x: 0, y: 0 });
+
+  // badge position lazily trails the raw mouse position
+  const pos = useLazyFollow(rawPos, isHovering, 0.12); // lower factor = lazier
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = cardRef.current?.getBoundingClientRect();
     if (!rect) return;
-    setPos({
+    setRawPos({
       x: e.clientX - rect.left,
       y: e.clientY - rect.top,
     });
@@ -86,7 +90,7 @@ export const ProjectCard = ({ project, index }: Props) => {
             {project.techstack.map((tech, i) => (
               <div
                 key={i}
-                className="px-3 py-1.5 rounded-md text-xs font-medium bg-white/3 border border-white/20 hover:bg-white/10 transition-colors text-secondary"
+                className="px-2 py-1 rounded-md text-[10px] font-medium bg-white/3 border border-white/20 hover:bg-white/10 transition-colors text-secondary"
               >
                 {tech}
               </div>

@@ -4,7 +4,7 @@ import { ProjectsData } from "@/data";
 
 export const Project = () => {
   return (
-    <section>
+    <section className="select-none">
       <div className="flex flex-col container text-white">
         <SectionTitle title="Projects" subtitle="Showcase" />
         <div className="flex flex-col gap-5">

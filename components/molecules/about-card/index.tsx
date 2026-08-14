@@ -8,7 +8,7 @@ interface AboutCardProps {
 
 export const AboutCard = ({ children, className }: AboutCardProps) => {
   return (
-    <Card className={cn("flex flex-col", className)}>
+    <Card className={cn("flex flex-col backdrop-blur-md", className)}>
       {children}
     </Card>
   );

@@ -1,18 +1,19 @@
-import { OverviewData } from "./interface";
+import { Mail, MapPin } from "lucide-react";
 
-export const Profiles = [
+export const AboutProfile = [
   { id: 1, img: "/profiles/freestyle1.jpg" },
   { id: 2, img: "/profiles/freestyle2.jpg" },
   { id: 3, img: "/profiles/freestyle3.jpg" },
 ];
 
-export const feature_item = [
-  { id: 1, src: "/features/aspire-certificate.png" },
-  { id: 2, src: "/features/komplex-certificate.jpg" },
-  { id: 3, src: "/features/teaching-certificate.jpg" },
+export const AboutFeature = [
+  { id: 1, src: "/features/oneworld-certificate.jpg" },
+  { id: 2, src: "/features/aspire-certificate.png" },
+  { id: 3, src: "/features/komplex-certificate.jpg" },
+  { id: 4, src: "/features/teaching-certificate.jpg" },
 ];
 
-export const OverviewProfile: OverviewData = {
+export const OverviewProfile = {
   initials: "RF",
   name: "ARafat Man",
   role: "Software Engineer & Full-Stack Developer",
@@ -60,36 +61,11 @@ export const ExperienceData = [
     position: "Competition Participant",
     date: "Aug 2025 - Sep 2025",
     description:
-"A project-based competition under the Next-Gen program where my team built Komplex, a free, open-source STEM learning platform for Cambodian high school students. The project earned First Runner-Up.",  },
+      "A project-based competition under the Next-Gen program where my team built Komplex, a free, open-source STEM learning platform for Cambodian high school students. The project earned First Runner-Up.",
+  },
 ];
 
-
-export interface NavbarLink {
-  id: string;
-  label: string;
-}
-
-export const NavbarLinks: NavbarLink[] = [
-  { id: "home", label: "Home",  },
-  { id: "about", label: "About" },
-  { id: "experiences", label: "Experiences" },
-  { id: "projects", label: "Projects" },
-  { id: "contact", label: "Contact"},
-];
-
-export interface Project {
-  name: string;
-  description: string;
-  techstack: string[];
-  date: string;
-  github_link: string;
-  hosting_link: string;
-  image_banner: string;
-  video_demo: string;
-  image_gallery: string[];
-}
-
-export const ProjectsData: Project[] = [
+export const ProjectsData = [
   {
     name: "KOMPLEX",
     description:
@@ -129,7 +105,7 @@ export const ProjectsData: Project[] = [
     image_gallery: [],
   },
   {
-    name: "UniFinder",
+    name: "Uni-Finder",
     description:
       "An offline Flutter app helping Cambodian students, find suitable university majors using local JSON. Users answer questions to match majors, create personalized plans, and explore Phnom Penh universities and careers.",
     techstack: [
@@ -157,5 +133,67 @@ export const ProjectsData: Project[] = [
     date: "Dec 2025",
     image_banner: "/projects/game/game-mac-frame.png",
     image_gallery: [],
+  },
+];
+
+export type TechStackItem = {
+  name: string;
+  icon: string;
+};
+
+export const TechStackData: TechStackItem[] = [
+  { name: "Next.js", icon: "/tech-stack/nextjs.png" },
+  { name: "React", icon: "/tech-stack/reactjs.png" },
+  { name: "Node.js", icon: "/tech-stack/nodejs.png" },
+  { name: "Express.js", icon: "/tech-stack/express.png" },
+  { name: "FastAPI", icon: "/tech-stack/fastapi.svg" },
+  { name: "HTML", icon: "/tech-stack/html.png" },
+  { name: "CSS", icon: "/tech-stack/css.png" },
+  { name: "Flutter", icon: "/tech-stack/flutter.png" },
+  { name: "C#", icon: "/tech-stack/csharp.png" },
+  { name: "Java", icon: "/tech-stack/java.webp" },
+  { name: "JavaScript", icon: "/tech-stack/javascript.png" },
+  { name: "TypeScript", icon: "/tech-stack/typescript.png" },
+  { name: "Unity", icon: "/tech-stack/unity.png" },
+  { name: "MySQL", icon: "/tech-stack/mysql.png" },
+  { name: "PostgreSQL", icon: "/tech-stack/postgres.png" },
+  { name: "Docker", icon: "/tech-stack/docker.png" },
+  { name: "Strapi", icon: "/tech-stack/strapi.jpg" },
+  { name: "Tailwind CSS", icon: "/tech-stack/tailwind.png" },
+  { name: "Shadcn", icon: "/tech-stack/shadcn.png" },
+  { name: "Figma", icon: "/tech-stack/figma.png" },
+  { name: "Git", icon: "/tech-stack/git.png" },
+  { name: "GitHub", icon: "/tech-stack/github.webp" },
+  { name: "GitLab", icon: "/tech-stack/gitlab.svg" },
+  { name: "Notion", icon: "/tech-stack/notion.png" },
+  { name: "Postman", icon: "/tech-stack/postman.png" },
+  { name: "Apidog", icon: "/tech-stack/apidog.jpg" },
+  { name: "Traefik", icon: "/tech-stack/traefik.webp" },
+];
+
+export const ContactData = [
+  {
+    src: "/social/linkedin.png",
+    label: "LinkedIn",
+    username: "@arafat-man",
+    href: "https://www.linkedin.com/in/arafat-man/",
+  },
+  {
+    src: "/social/github.png",
+    label: "GitHub",
+    username: "@Ra-Fat",
+    href: "https://github.com/Ra-Fat",
+  },
+  {
+    src: "/social/facebook.png",
+    label: "Facebook",
+    username: "@Arafat Man",
+    href: "https://web.facebook.com/urj4zz/",
+  },
+  {
+    src: "/social/telegram.png",
+    label: "Telegram",
+    username: "@arafat_man",
+    href: "https://t.me/arafat_man",
   },
 ];
