@@ -13,7 +13,7 @@ export const About = () => {
       <div className="overflow-x-hidden container select-none">
         <div className="flex flex-col w-full">
           <SectionTitle title="About" subtitle="Profile" />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
             <AboutCard className="md:col-span-2 lg:col-span-1">
               <Overview data={OverviewProfile} />
             </AboutCard>
@@ -26,7 +26,7 @@ export const About = () => {
               <Feature images={AboutFeature} />
             </AboutCard>
 
-            <AboutCard className="md:col-span-2 md:h-auto h-65 lg:col-span-3">
+            <AboutCard className="md:col-span-2 md:h-auto h-62 lg:col-span-3">
               <Education />
             </AboutCard>
           </div>

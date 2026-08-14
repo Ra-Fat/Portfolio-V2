@@ -28,7 +28,7 @@ export const HeroSection = () => {
           </span>
         </h1>
 
-        <p className="mt-8 text-lg font-semibold text-neutral-600">
+        <p className="mt-8 text-sm md:text-lg font-semibold text-neutral-600">
           Software Engineer & Full-Stack Developer
         </p>
       </div>
