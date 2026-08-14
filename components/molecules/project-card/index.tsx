@@ -52,60 +52,53 @@ export const ProjectCard = ({ project, index }: Props) => {
         "transform transition-all duration-700 ease-out",
       )}
     >
-      <Link
-        href={project.hosting_link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="contents cursor-pointer"
+      <div
+        className={cn(
+          "relative overflow-hidden flex justify-center items-center",
+          isEven ? "md:order-1" : "md:order-2",
+        )}
       >
-        <div
-          className={cn(
-            "relative overflow-hidden flex justify-center items-center",
-            isEven ? "md:order-1" : "md:order-2",
-          )}
-        >
-          <Image
-            src={project.image_banner}
-            alt={project.name}
-            width={400}
-            height={400}
-            className="object-contain"
-          />
+        <Image
+          src={project.image_banner}
+          alt={project.name}
+          width={400}
+          height={400}
+          className="object-contain"
+        />
+      </div>
+
+      <CardContent
+        className={cn(
+          "flex flex-col gap-4 p-0",
+          isEven ? "md:order-2" : "md:order-1 pl-4",
+        )}
+      >
+        <h2 className="text-xl font-bold text-white uppercase">
+          {project.name}
+        </h2>
+        <p className="text-secondary leading-relaxed text-base">
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-3">
+          {project.techstack.map((tech, i) => (
+            <div
+              key={i}
+              className="px-2 py-1 rounded-md text-[10px] font-medium bg-white/3 border border-white/20 hover:bg-white/10 transition-colors text-secondary"
+            >
+              {tech}
+            </div>
+          ))}
         </div>
 
-        <CardContent
-          className={cn(
-            "flex flex-col gap-4 p-0",
-            isEven ? "md:order-2" : "md:order-1 pl-4",
-          )}
-        >
-          <h2 className="text-xl font-bold text-white uppercase">
-            {project.name}
-          </h2>
-          <p className="text-secondary leading-relaxed text-base">
-            {project.description}
+        <div className="w-full mt-3 h-px bg-linear-to-r from-transparent via-gray-700 to-transparent" />
+
+        <div className="flex items-center justify-between">
+          <p className="text-muted text-sm leading-relaxed flex-1 line-clamp-3">
+            {project.date}
           </p>
-
-          <div className="flex flex-wrap gap-3">
-            {project.techstack.map((tech, i) => (
-              <div
-                key={i}
-                className="px-2 py-1 rounded-md text-[10px] font-medium bg-white/3 border border-white/20 hover:bg-white/10 transition-colors text-secondary"
-              >
-                {tech}
-              </div>
-            ))}
-          </div>
-
-          <div className="w-full mt-3 h-px bg-linear-to-r from-transparent via-gray-700 to-transparent" />
-
-          <div className="flex items-center justify-between">
-            <p className="text-muted text-sm leading-relaxed flex-1 line-clamp-3">
-              {project.date}
-            </p>
-          </div>
-        </CardContent>
-      </Link>
+        </div>
+      </CardContent>
 
       <CircularHoverBadge id={index} isHovering={isHovering} pos={pos} />
     </Card>
