@@ -6,7 +6,7 @@ import SmoothScrollProvider from "@/components/canvas/smooth-scroll";
 import { Navbar } from "@/modules/layout/header";
 import "./globals.css";
 
-const siteUrl = "https://your-actual-domain.com";
+const siteUrl = "https://arafat-man-portfolio.vercel.app/";
 const siteTitle = "Man Arafat | Software Developer";
 const siteDescription =
   "Explore my projects and experience as a junior software developer who's curious and enjoys learning new things.";
@@ -16,6 +16,13 @@ export const metadata: Metadata = {
   title: siteTitle,
   description: siteDescription,
   authors: [{ name: "Man Arafat" }],
+  keywords: [
+    "software developer",
+    "portfolio",
+    "API developer",
+    "Tean Collaborator",
+    "Man Arafat",
+  ],
   creator: "Man Arafat",
   openGraph: {
     type: "website",
@@ -37,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
-    images: ["/og-image.png"],
+    images: ["/og-image.jpg"],
   },
 
   icons: {
