@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 
 import React, { useEffect, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
@@ -90,20 +90,44 @@ function GroundGrid({ color }: { color: string }) {
   );
 }
 
-/** Slowly pulls the camera back over the first ~300px of scroll, matching the original scroll-dolly effect */
+/**
+ * Smoothly dollies the camera back over the first ~300px of scroll.
+ *
+ * The scroll event handler ONLY updates a target ref — it never touches
+ * camera.position.z directly. useFrame then eases the camera toward that
+ * target every animation frame using THREE.MathUtils.damp. This decouples
+ * the (jittery, bursty on mobile) scroll event timing from the actual
+ * render, which fixes the "stuck then jumps to a different position"
+ * behavior you get from snapping camera.position.z directly inside the
+ * scroll handler.
+ */
 function ScrollDolly() {
   const { camera } = useThree();
+  const targetZ = useRef(5);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      if (scrollY < 300) {
-        camera.position.z = 5 + scrollY * 0.01;
-      }
+      // Clamp to [0, 300] so iOS rubber-band overscroll (which can produce
+      // negative scrollY) or fast momentum scroll (which can overshoot
+      // past 300 between frames) never sends the target out of range.
+      const clampedScrollY = Math.max(0, Math.min(scrollY, 300));
+      targetZ.current = 5 + clampedScrollY * 0.01;
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // set initial target on mount
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [camera]);
+  }, []);
+
+  useFrame((_, delta) => {
+    camera.position.z = THREE.MathUtils.damp(
+      camera.position.z,
+      targetZ.current,
+      6, // smoothing speed — higher = snappier, lower = smoother
+      delta
+    );
+  });
 
   return null;
 }
