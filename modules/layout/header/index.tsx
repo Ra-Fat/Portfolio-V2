@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { DesktopNav } from "../components/desktop-nav";
 import { MobileNav } from "../components/mobile-nav";
 import { NavbarLinks } from "@/config";
@@ -25,7 +26,7 @@ export const Navbar = () => {
     if (lenis && section) {
       lenis.scrollTo(section, {
         duration: 2.2,
-        easing: (t: number) => 1 - Math.pow(1 - t, 4), // easeOutQuart, nice slow settle
+        easing: (t: number) => 1 - Math.pow(1 - t, 4),
       });
     } else {
       section?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -34,7 +35,7 @@ export const Navbar = () => {
     if (clickTimeoutRef.current) clearTimeout(clickTimeoutRef.current);
     clickTimeoutRef.current = setTimeout(() => {
       userClickedRef.current = false;
-    }, 2500); // should be >= duration above (in ms)
+    }, 2500);
   };
 
   useEffect(() => {
@@ -68,7 +69,15 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <div className="sticky top-5 z-50 w-full container">
+    <motion.div
+      initial={{ y: -40, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+      }}
+      className="sticky top-5 z-50 w-full container"
+    >
       <DesktopNav active={active} handleLinkClick={handleLinkClick} />
       <MobileNav
         menuOpen={menuOpen}
@@ -76,6 +85,6 @@ export const Navbar = () => {
         active={active}
         handleLinkClick={handleLinkClick}
       />
-    </div>
+    </motion.div>
   );
 };
