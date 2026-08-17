@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import * as v from "valibot";
 import emailjs from "@emailjs/browser";
+import { motion, type Variants } from "framer-motion";
 import { SectionTitle } from "@/components/atoms/section-title";
 import { ContactForm } from "@/components/templates/contact-form";
 import { ContactInfo } from "@/components/templates/contact-info";
@@ -10,6 +11,36 @@ import {
   ContactSchema,
   ContactFormErrors,
 } from "@/components/templates/contact-form/schema";
+
+// Stagger the form and info panel in one after another as this section
+// scrolls into view.
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const fromLeft: Variants = {
+  hidden: { opacity: 0, x: -60 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.7, ease: [0.65, 0, 0.35, 1] },
+  },
+};
+
+const fromRight: Variants = {
+  hidden: { opacity: 0, x: 60 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.7, ease: [0.65, 0, 0.35, 1] },
+  },
+};
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -87,16 +118,26 @@ export const Contact = () => {
     <div className="w-full container">
       <div className="flex flex-col items-center justify-center">
         <SectionTitle title="Contact" subtitle="Get In Touch" />
-        <div className="flex flex-col lg:flex-row items-stretch justify-center gap-6 w-full">
-          <ContactForm
-            formData={formData}
-            errors={errors}
-            loading={loading}
-            onChange={handleChange}
-            onSubmit={handleSubmit}
-          />
-          <ContactInfo />
-        </div>
+        <motion.div
+          className="flex flex-col lg:flex-row items-stretch justify-center gap-6 w-full"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <motion.div variants={fromLeft} className="flex-2">
+            <ContactForm
+              formData={formData}
+              errors={errors}
+              loading={loading}
+              onChange={handleChange}
+              onSubmit={handleSubmit}
+            />
+          </motion.div>
+          <motion.div variants={fromRight} className="flex-1">
+            <ContactInfo />
+          </motion.div>
+        </motion.div>
       </div>
     </div>
   );
