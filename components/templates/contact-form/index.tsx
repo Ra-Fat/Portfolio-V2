@@ -86,7 +86,7 @@ export const ContactForm = ({
       <Button
         type="submit"
         disabled={loading}
-        className="flex items-center text-muted justify-center gap-2 font-bold uppercase cursor-pointer p-6 rounded-lg"
+        className="flex items-center text-white justify-center gap-2 font-bold uppercase cursor-pointer p-6 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-sm transition-colors"
       >
         {loading ? (
           <>

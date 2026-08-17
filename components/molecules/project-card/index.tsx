@@ -21,6 +21,7 @@ type Props = {
     hosting_link: string;
   };
   index: number;
+  onSelect: () => void;
 };
 
 export const ProjectCard = ({ project, index }: Props) => {
@@ -29,7 +30,6 @@ export const ProjectCard = ({ project, index }: Props) => {
   const [isHovering, setIsHovering] = useState(false);
   const [rawPos, setRawPos] = useState({ x: 0, y: 0 });
 
-  // badge position lazily trails the raw mouse position
   const pos = useLazyFollow(rawPos, isHovering, 0.12); // lower factor = lazier
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -48,7 +48,7 @@ export const ProjectCard = ({ project, index }: Props) => {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
       className={cn(
-        "relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-0 items-center group overflow-hidden",
+        "relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-0 items-center group overflow-hidden cursor-pointer",
         "transform transition-all duration-700 ease-out",
       )}
     >
