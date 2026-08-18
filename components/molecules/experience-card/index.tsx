@@ -12,9 +12,7 @@ type Props = {
 export const ExperienceCard = ({ exp }: Props) => (
   <Card className="backdrop-blur-md">
     <CardHeader className="p-0">
-      <CardTitle className="text-lg uppercase font-bold">
-        {exp.title}
-      </CardTitle>
+      <CardTitle className="text-lg uppercase font-bold">{exp.title}</CardTitle>
       <h2 className="text-md font-semibold text-secondary mt-2">
         {exp.position}
       </h2>
@@ -25,9 +23,7 @@ export const ExperienceCard = ({ exp }: Props) => (
         {exp.description}
       </p>
       <div className="w-full h-px bg-linear-to-r from-transparent via-gray-700 to-transparent" />
-      <div className="text-sm font-semibold text-muted mt-4">
-        {exp.date}
-      </div>
+      <div className="text-sm font-semibold text-muted mt-4">{exp.date}</div>
     </CardContent>
   </Card>
 );

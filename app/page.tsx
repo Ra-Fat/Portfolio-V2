@@ -14,7 +14,7 @@ export default function Home() {
 
       <div
         id="dark-section"
-        className="relative z-10 flex bg-foreground flex-col gap-10 md:gap-15 lg:gap-20  xl:gap-25 py-25"
+        className="relative z-10 overflow-x-hidden flex bg-foreground flex-col gap-10 md:gap-15 lg:gap-20  xl:gap-25 py-25"
       >
         <div className="absolute inset-0 z-0 pointer-events-none">
           <Squares borderColor="rgba(255, 255, 255, 0.06)" squareSize={48} />

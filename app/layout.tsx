@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Footer } from "@/modules/layout/footer";
 import { inter, bauhaus, cocogoose, moderniz, stretchPro } from "@/lib/font";
 import SmoothScrollProvider from "@/components/canvas/smooth-scroll";
+import ScrollToTop from "@/components/atoms/scroll-to-top";
 
 import { Navbar } from "@/modules/layout/header";
 import "./globals.css";
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
       {
         url: "/og-image.jpg",
         width: 1200,
-        height: 630,
+        height: 430,
         alt: siteTitle,
       },
     ],
@@ -72,12 +73,10 @@ export default function RootLayout({
         <SmoothScrollProvider>
           <Navbar />
           {children}
+          <ScrollToTop />
           <Footer />
         </SmoothScrollProvider>
       </body>
     </html>
   );
 }
-
-
-// testing

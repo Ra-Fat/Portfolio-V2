@@ -7,10 +7,6 @@ interface SectionTitleProps {
   subtitle?: string;
 }
 
-// Stagger the title / slash / subtitle in one after another as this
-// component scrolls into view. Since SectionTitle is reused across every
-// section of the page, this container fires independently each time its
-// own instance enters the viewport.
 const containerVariants: Variants = {
   hidden: {},
   visible: {

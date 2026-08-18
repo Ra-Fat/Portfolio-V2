@@ -1,13 +1,9 @@
-
 type Props = {
   vertical?: boolean;
   points?: number[];
 };
 
-export const ProgressBar = ({
-  vertical = true,
-  points = [],
-}: Props) => (
+export const ProgressBar = ({ vertical = true, points = [] }: Props) => (
   <div
     className={`
       ${
@@ -18,9 +14,7 @@ export const ProgressBar = ({
       bg-white/10
     `}
   >
-    <div
-      className="absolute top-0 left-0 w-full bg-white/40"
-    />
+    <div className="absolute top-0 left-0 w-full bg-white/40" />
 
     {points.map((point, i) => (
       <div

@@ -6,7 +6,7 @@ import emailjs from "@emailjs/browser";
 import { motion, type Variants } from "framer-motion";
 import { SectionTitle } from "@/components/atoms/section-title";
 import { ContactForm } from "@/components/templates/contact-form";
-import { ContactInfo } from "@/components/templates/contact-info";
+import { ContactInfo } from "@/components/molecules/contact-info";
 import {
   ContactSchema,
   ContactFormErrors,

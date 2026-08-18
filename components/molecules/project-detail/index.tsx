@@ -2,17 +2,10 @@ import React, { useState } from "react";
 import { X, Play, ExternalLink } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import Image from "next/image";
-
-type Project = {
-  name: string;
-  video_demo?: string;
-  image_gallery?: string[];
-  hosting_link?: string;
-  github_link?: string;
-};
+import { ProjectType } from "../project-card";
 
 type Props = {
-  project: Project;
+  project: ProjectType;
   onClose: () => void;
 };
 
@@ -55,7 +48,7 @@ export const ProjectDetails = ({ project, onClose }: Props) => {
                 frameBorder="0"
                 allow="autoplay; encrypted-media"
                 allowFullScreen
-                title={`${project.name} demo`}
+                title={`${project.name} demo`} 
               />
             ) : gallery[selectedIndex - 1] ? (
               <Image
