@@ -17,7 +17,7 @@ export const MobileTimeline = ({ experiences }: Props) => {
       </div>
       <div className="flex-1 space-y-5">
         {experiences.map((exp, index) => (
-          <ExperienceCard exp={exp} />
+          <ExperienceCard exp={exp} key={index}/>
         ))}
       </div>
     </div>

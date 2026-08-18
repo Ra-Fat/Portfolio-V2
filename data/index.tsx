@@ -84,7 +84,14 @@ export const ProjectsData = [
     video_demo: "https://youtu.be/7lELfMt81No",
     date: "Sep 2025",
     image_banner: "/projects/komplex/komplexF.png",
-    image_gallery: [],
+    image_gallery: [
+      '/projects/komplex/landing.png',
+      '/projects/komplex/ai.png',
+      '/projects/komplex/extra.png',
+      '/projects/komplex/lesson.png',
+      '/projects/komplex/speech.png',
+      '/projects/komplex/video.png',
+    ],
   },
   {
     name: "Grand Cineplex",
@@ -102,7 +109,13 @@ export const ProjectsData = [
     video_demo: "https://youtu.be/ENPb3mJ1BhM",
     date: "July 2025",
     image_banner: "/projects/grand-cineplex/grandcineplexF.png",
-    image_gallery: [],
+    image_gallery: [
+      '/projects/grand-cineplex/dashboard.png',
+      '/projects/grand-cineplex/movie-selected.png',
+      '/projects/grand-cineplex/payment-completed.png',
+      '/projects/grand-cineplex/payment.png',
+      '/projects/grand-cineplex/seat-selection.png',
+    ],
   },
   {
     name: "Uni-Finder",
@@ -120,7 +133,18 @@ export const ProjectsData = [
     video_demo: "https://youtu.be/luuqpryOJ3g",
     date: "Jan 2026",
     image_banner: "/projects/unifinder/unifinderF.png",
-    image_gallery: [],
+    image_gallery: [
+      "/projects/unifinder/careers.png",
+      "/projects/unifinder/dashboard.png",
+      "/projects/unifinder/major-selected.png",
+      "/projects/unifinder/naming-dream.png",
+      "/projects/unifinder/question.png",
+      "/projects/unifinder/recommend-major.png",
+      "/projects/unifinder/uni-compare-result.png",
+      "/projects/unifinder/uni-compare-result2.png",
+      "/projects/unifinder/university-selected.png",
+      "/projects/unifinder/view-dream.png",
+    ],
   },
   {
     name: "Frost-Guard",
@@ -132,7 +156,13 @@ export const ProjectsData = [
     video_demo: "https://youtu.be/mIUvftuUees?si=o4scTwVXMq5XJlVO",
     date: "Dec 2025",
     image_banner: "/projects/game/game-mac-frame.png",
-    image_gallery: [],
+    image_gallery: [
+      "/projects/game/game-landing.png",
+      "/projects/game/game-first-level.png",
+      "/projects/game/game-second-level.png",
+      "/projects/game/game-over.png",
+      "/projects/game/game-winning.png",
+    ],
   },
 ];
 

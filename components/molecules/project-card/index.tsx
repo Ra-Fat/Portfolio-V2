@@ -8,23 +8,25 @@ import { cn } from "@/lib/utils";
 import { CircularHoverBadge } from "@/components/atoms/circular-hover";
 import { useLazyFollow } from "@/utils/use-scroll";
 
+export interface ProjectType {
+  name: string;
+  description: string;
+  image_banner: string;
+  techstack: string[];
+  date: string;
+  image_gallery: string[];
+  video_demo: string;
+  github_link: string;
+  hosting_link: string;
+}
+
 type Props = {
-  project: {
-    name: string;
-    description: string;
-    image_banner: string;
-    techstack: string[];
-    date: string;
-    image_gallery: string[];
-    video_demo: string;
-    github_link: string;
-    hosting_link: string;
-  };
+  project: ProjectType;
   index: number;
   onSelect: () => void;
 };
 
-export const ProjectCard = ({ project, index }: Props) => {
+export const ProjectCard = ({ project, index, onSelect }: Props) => {
   const isEven = index % 2 === 0;
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
@@ -47,6 +49,7 @@ export const ProjectCard = ({ project, index }: Props) => {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
+      onClick={onSelect}
       className={cn(
         "relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-0 items-center group overflow-hidden cursor-pointer",
         "transform transition-all duration-700 ease-out",
