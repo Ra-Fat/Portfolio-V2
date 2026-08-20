@@ -38,7 +38,7 @@ const ScrollToTop: React.FC = () => {
     <button
       type="button"
       onClick={onClickHandler}
-      className={`fixed cursor-pointer right-8 z-999 flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 p-4 font-bold uppercase text-white shadow-lg backdrop-blur-sm transition-all duration-300 ease-in-out hover:bg-white/20 ${
+      className={`fixed cursor-pointer right-4 z-999 flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 p-3 font-bold uppercase text-white shadow-lg backdrop-blur-sm transition-all duration-300 ease-in-out hover:bg-white/20 ${
         stick ? "bottom-16 visible opacity-80" : "bottom-15 invisible opacity-0"
       }`}
     >

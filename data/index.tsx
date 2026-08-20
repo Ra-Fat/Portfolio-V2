@@ -17,8 +17,8 @@ export const OverviewProfile = {
   initials: "RF",
   name: "ARafat Man",
   role: "Software Engineer & Full-Stack Developer",
-  description:
-    "I am a fourth-year Computer Science student with a strong interest in software development, specializing in web and mobile application development. I enjoy building practical applications, learning new technologies, and turning ideas into functional solutions.",
+    description:
+    "I am a Fourth-year Computer Science student specializing in web and mobile application development. Lately I've found myself drawn to DevOps and the infrastructure behind it , the part of the process most people don't see, but that decides whether software actually holds up once it's out in the world.",
 };
 
 export const EducationData = [

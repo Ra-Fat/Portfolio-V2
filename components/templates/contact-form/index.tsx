@@ -45,7 +45,7 @@ export const ContactForm = ({
             className="px-5 py-5 rounded-lg text-white"
           />
           {errors.name && (
-            <span className="text-red-400 text-[12px]">{errors.name}</span>
+            <span className="text-red-500 text-[12px]">{errors.name}</span>
           )}
         </div>
         <div className="flex flex-col gap-3 flex-1">
